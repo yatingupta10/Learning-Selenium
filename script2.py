@@ -5,9 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementNotVisibleException
+from selenium.webdriver.common.keys import Keys
  
- 
-def init_driver():
+'''def init_driver():
     driver = webdriver.Firefox()
     driver.wait = WebDriverWait(driver, 5)
     return driver
@@ -35,3 +35,16 @@ if __name__ == "__main__":
     lookup(driver, "Selenium")
     time.sleep(5)
     driver.quit()
+'''
+
+driver=webdriver.Firefox()
+driver.get("http://www.google.com")
+elem = driver.find_element_by_name("q")
+elem.clear()
+elem.send_keys("pycon")
+elem.send_keys(Keys.RETURN)
+button = driver.find_element_by_name("btnG")
+button.click()
+assert "No results found." not in driver.page_source
+time.sleep(5)
+driver.close()
